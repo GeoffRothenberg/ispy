@@ -1,0 +1,4 @@
+/dev
+/etc
+/proc
+/var/log
