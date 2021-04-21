@@ -14,27 +14,27 @@ observelist = "ispy_directories.txt" #name of file containing the directory name
 class Handlers(FileSystemEventHandler):
     def __init__(self): 
 
-         logfile = open("logfile.txt", "a")
+         logfile = open("ispy_logfile.txt", "a")
          logfile.close()
 
     def on_created(self, event):
-        logfile = open("logfile.txt", "a")
+        logfile = open("ispy_logfile.txt", "a")
         logfile.write("\n{0}- was created at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_modified(self, event):
-        logfile = open("logfile.txt", "a")
+        logfile = open("ispy_logfile.txt", "a")
         logfile.write("\n{0}- was modified at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
       
 
     def on_deleted(self, event):
-        logfile = open("logfile.txt", "a")
+        logfile = open("ispy_logfile.txt", "a")
         logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_moved(self, event):
-        logfile = open("logfile.txt", "a")
+        logfile = open("ispy_logfile.txt", "a")
         logfile.write("\n{0}- was moved at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
