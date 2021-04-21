@@ -1,6 +1,7 @@
 import sys
 import time
 import logging
+
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
@@ -10,35 +11,36 @@ watchlist = "ispy_watchlist.txt" #name of watchlist file, change once agreed on 
 
 observelist = "ispy_directories.txt" #name of file containing the directory names to watch
 
-class Handlers(PatternMatchingEventHandler):
+class Handlers(FileSystemEventHandler):
     def __init__(self): 
-         logfile = open("logfile.txt", "w")
+
+         logfile = open("logfile.txt", "a")
          logfile.close()
 
     def on_created(self, event):
-        logfile.open("logfile.txt", "a")
-        logfile.write("{0}- was created at {1}".format(events.src_path,  strftime(date.time.now())))
+        logfile = open("logfile.txt", "a")
+        logfile.write("\n{0}- was created at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_modified(self, event):
-        logfile.open("logfile.txt", "a")
-        logfile.write("{0}- was modified at {1}".format(events.src_path,  strftime(date.time.now())))
+        logfile = open("logfile.txt", "a")
+        logfile.write("\n{0}- was modified at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
-        print("kjdksjdksd")
+      
 
     def on_deleted(self, event):
-        logfile.open("logfile.txt", "a")
-        logfile.write("{0}- was deleted at {1}".format(events.src_path,  strftime(date.time.now())))
+        logfile = open("logfile.txt", "a")
+        logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_moved(self, event):
-        logfile.open("logfile.txt", "a")
-        logfile.write("{0}- was moved at {1}".format(events.src_path,  strftime(date.time.now())))
+        logfile = open("logfile.txt", "a")
+        logfile.write("\n{0}- was moved at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
 if __name__ == "__main__":
     #set configuration - change format? user? clientip? process? processname? filename/pathname? 
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+    #logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
     #path to directories containing the files to observe
     with open(observelist, "r") as directories:    
@@ -49,7 +51,7 @@ if __name__ == "__main__":
         files = [line.rstrip('\n') for line in filelist]
 
     #set event handler - do I need to change this to customized?
-    patternhandler = 
+   
     event_handler = Handlers()
 
     observer = Observer()
