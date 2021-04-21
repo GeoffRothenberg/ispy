@@ -2,20 +2,20 @@ import sys
 import time
 import logging
 from watchdog.observers import Observer
-#from watchdog.events import LoggingEventHandlier
+from watchdog.events import LoggingEventHandler
+from watchdog.events import FileSystemEventHandler
 from watchdog.events import PatternMatchingEventHandler
 
 watchlist = "ispy_watchlist.txt" #name of watchlist file, change once agreed on a file name
 
 observelist = "ispy_directories.txt" #name of file containing the directory names to watch
-class Handlers(watchdog.events.PatternMatchingEventHandler):
+
+class Handlers(PatternMatchingEventHandler):
     def __init__(self): 
-         watchdog.events.PatternMatchingEventHandler.__init__(self, patterns=['*.csv'],
-                                                             ignore_directories=True, case_sensitive=False)
-         logfile = open("logfile.txt", "x")
+         logfile = open("logfile.txt", "w")
          logfile.close()
 
-    def on_Created(self, event):
+    def on_created(self, event):
         logfile.open("logfile.txt", "a")
         logfile.write("{0}- was created at {1}".format(events.src_path,  strftime(date.time.now())))
         logfile.close()
@@ -23,8 +23,8 @@ class Handlers(watchdog.events.PatternMatchingEventHandler):
     def on_modified(self, event):
         logfile.open("logfile.txt", "a")
         logfile.write("{0}- was modified at {1}".format(events.src_path,  strftime(date.time.now())))
-
         logfile.close()
+        print("kjdksjdksd")
 
     def on_deleted(self, event):
         logfile.open("logfile.txt", "a")
@@ -49,7 +49,8 @@ if __name__ == "__main__":
         files = [line.rstrip('\n') for line in filelist]
 
     #set event handler - do I need to change this to customized?
-    event_handler = Handlers(PatternMatchingEventHandler(patterns=files))
+    patternhandler = 
+    event_handler = Handlers()
 
     observer = Observer()
     
