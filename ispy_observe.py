@@ -3,7 +3,7 @@ import time
 
 
 from watchdog.observers import Observer
-
+from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
 
 
@@ -19,23 +19,23 @@ class Handlers(FileSystemEventHandler):
 
     def on_created(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("{0}- was created at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("\n{0}- was created at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_modified(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("{0}- was modified at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("\n{0}- was modified at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
       
 
     def on_deleted(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("{0}- was deleted at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_moved(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("{0}- was moved at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("\n{0}- was moved at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
 if __name__ == "__main__":
