@@ -3,9 +3,9 @@ import time
 import logging
 
 from watchdog.observers import Observer
-from watchdog.events import LoggingEventHandler
+
 from watchdog.events import FileSystemEventHandler
-from watchdog.events import PatternMatchingEventHandler
+
 
 watchlist = "ispy_watchlist.txt" #name of watchlist file, change once agreed on a file name
 
@@ -19,28 +19,27 @@ class Handlers(FileSystemEventHandler):
 
     def on_created(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was created at {1}".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("{0}- was created at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_modified(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was modified at {1}".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("{0}- was modified at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
       
 
     def on_deleted(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("{0}- was deleted at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     def on_moved(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was moved at {1}".format(event.src_path,  str(time.ctime(time.time()))))
+        logfile.write("{0}- was moved at {1}\n".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
 if __name__ == "__main__":
     #set configuration - change format? user? clientip? process? processname? filename/pathname? 
-    #logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
     #path to directories containing the files to observe
     with open(observelist, "r") as directories:    
