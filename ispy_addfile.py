@@ -5,22 +5,24 @@
 
 import os.path
 from os import path
-#test
-watchlist = "ispy_watchlist.txt" #name of watch list file, change once we have agreed on a file name
-
-observelist = "ispy_directories.txt" #name of file containing the directories to observe
 
 def main():
+    watchlist = "ispy_watchlist.txt" #name of watchlist file, specific files to be monitored
+    observelist = "ispy_directories.txt" #name of file containing directories to observe
+
+    #get list of current files being watched
     filelist = open(watchlist, "r")
     currentlist = filelist.read()
     filelist.close()
     files = []
 
+    #get list of current directories being observed
     directories = open(observelist, "r")
     currentdir = directories.read()
     directories.close()
     directories = []
 
+    #user inputs additional files to watch
     newfiles = input("Enter list of files separated by commas to add to watchlist:\n").split(',')
     for i in range(len(newfiles)):
         newfiles[i]=newfiles[i].strip()
@@ -32,7 +34,7 @@ def main():
             print(i + " can not be found\n")
             continue
 
-        #get absolute path
+        #get absolute path of file
         filepath = path.abspath(i)
 
         #check that file isn't already being watched
