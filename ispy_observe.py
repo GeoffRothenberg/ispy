@@ -22,26 +22,26 @@ class Handlers(FileSystemEventHandler):
     #Method to log a file creation event
     def on_created(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was created at {1} by User:{2}".format(event.src_path,  str(time.ctime(time.time())), os.getuid()))
+        logfile.write("\n{0}- was created at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     #Method to log a file modification event
     def on_modified(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was modified at {1} by User: {2}".format(event.src_path,  str(time.ctime(time.time())), os.getuid()))
+        logfile.write("\n{0}- was modified at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
       
 
     #Method to log a file deletion event
     def on_deleted(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was deleted at {1} by User: {2}".format(event.src_path,  str(time.ctime(time.time())), os.getuid()))
+        logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
     #Method to log a file relocation event
     def on_moved(self, event):
         logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was moved at {1} by User: {2}".format(event.src_path,  str(time.ctime(time.time())), os.getuid()))
+        logfile.write("\n{0}- was moved at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
 
 if __name__ == "__main__":
