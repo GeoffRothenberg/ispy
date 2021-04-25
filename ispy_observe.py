@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
     observer = Observer()
     
-    #schedule events for each directory
+    #schedule events for each file
     for file in files:    
         observer.schedule(event_handler, file, recursive=False)
 
