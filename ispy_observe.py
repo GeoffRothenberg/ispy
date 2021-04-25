@@ -50,11 +50,7 @@ class Handlers(FileSystemEventHandler):
 if __name__ == "__main__":
 
     watchlist = "ispy_watchlist.txt" #file containing list of files to watch
-    observelist = "ispy_directories.txt" #file contaning list of directories to observe     
-
-    #get list of directories to observe
-    with open(observelist, "r") as directories:    
-        paths = [line.rstrip('\n') for line in directories]
+    
 
     #get list of files to monitor
     with open(watchlist, "r") as filelist:
