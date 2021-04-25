@@ -7,10 +7,6 @@ from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
 
 
-watchlist = "ispy_watchlist.txt" #name of watchlist file, change once agreed on a file name
-
-observelist = "ispy_directories.txt" #name of file containing the directory names to watch
-
 #Event Handler class
 class Handlers(FileSystemEventHandler):
     #Initializing Handler object, creating the logfile
@@ -45,9 +41,11 @@ class Handlers(FileSystemEventHandler):
         logfile.close()
 
 if __name__ == "__main__":
-     
 
-    #path to directories containing the files to observe
+    watchlist = "ispy_watchlist.txt" #file containing list of files to watch
+    observelist = "ispy_directories.txt" #file contaning list of directories to observe     
+
+    #get list of directories to observe
     with open(observelist, "r") as directories:    
         paths = [line.rstrip('\n') for line in directories]
 
@@ -56,16 +54,15 @@ if __name__ == "__main__":
         files = [line.rstrip('\n') for line in filelist]
 
     #set event handler
-   
     event_handler = Handlers()
 
     observer = Observer()
     
-    #schedule events - should it be recursive?
+    #schedule events for each directory
     for path in paths:    
         observer.schedule(event_handler, path, recursive=False)
 
-
+    #start the observer
     observer.start()
 
     try:
