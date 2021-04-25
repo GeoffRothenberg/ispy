@@ -6,7 +6,6 @@ from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
 
-
 #Event Handler class
 class Handlers(FileSystemEventHandler):
     #Initializing Handler object, creating the logfile
@@ -30,15 +29,23 @@ class Handlers(FileSystemEventHandler):
 
     #Method to log a file deletion event
     def on_deleted(self, event):
-        logfile = open("ispy_logfile.txt", "a")
-        logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
-        logfile.close()
+        #if file was actually deleted
+        if(not os.path.exists(event.src_path)):
+            logfile = open("ispy_logfile.txt", "a")
+            logfile.write("\n{0}- was deleted at {1}".format(event.src_path,  str(time.ctime(time.time()))))
+            logfile.close()
+        #if file was edited by vim
+        else:
+            logfile = open("ispy_logfile.txt", "a")
+            logfile.write("\n{0}- was modified at {1}".format(event.src_path, str(time.ctime(time.time()))))
+            logfile.close()
 
     #Method to log a file relocation event
     def on_moved(self, event):
         logfile = open("ispy_logfile.txt", "a")
         logfile.write("\n{0}- was moved at {1}".format(event.src_path,  str(time.ctime(time.time()))))
         logfile.close()
+
 
 if __name__ == "__main__":
 
