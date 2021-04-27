@@ -12,9 +12,10 @@ RUN apt install curl -y
 RUN apt install net-tools -y
 RUN apt install netcat -y
 
-#Installing Python3
+#Installing Python3 and pip3
 RUN apt install python3 -y
-
+RUN apt install python3-pip -y
+ 
 
 WORKDIR /iSPY/
 COPY requirements.txt requirements.txt
