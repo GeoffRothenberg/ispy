@@ -15,8 +15,8 @@ RUN apt install netcat -y
 #Installing Python3
 RUN apt install python3 -y
 
-RUN mkdir /iSPY/
-WORKDIR /iSPY
+
+WORKDIR /iSPY/
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
