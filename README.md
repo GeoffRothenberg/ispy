@@ -1,6 +1,6 @@
 # iSPY
 
-iSPY is our group's implementation of a file monitoring system. It uses the python library watchdog to monitor for specfic events in specfic files.
+iSPY is our group's implementation of a file monitoring system. It uses the python library watchdog to monitor for specific events in specific files.
 
 
 # Installation of Python 3 and Watchdog
