@@ -25,4 +25,4 @@ COPY . .
 
 
 
-CMD [ "python3", "ispy_observe.py" ]
+ENTRYPOINT tail -f /dev/null
