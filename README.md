@@ -4,7 +4,7 @@ iSPY is our group's implementation of a file monitoring system. It uses the pyth
 
 
 # Installation of Python 3 and Watchdog
-iSPY was written by our group to be run with Python 3. Our repo contains a docker file to install the necessary dependencies (watchdog). The dockerfile is configured to automatically put this into its own directory so as not to copy unecesary files to the image. To build the image run `docker build -t ispy https://github.com/GeoffRothenberg/ispy`
+iSPY was written by our group to be run with Python 3. Our repo contains a docker file to install the necessary dependencies (watchdog). The dockerfile is configured to automatically put this into its own directory so as not to copy unnecessary files to the image. To build the image run `docker build -t ispy https://github.com/GeoffRothenberg/ispy`
 
 # Running the iSPY program
 Our project comprises two different programs, designed to run manually. The first is ispy_addfile.py which, as its name suggests, is to add files to be monitored. In order to run this program type `python3 ispy_addfile.py`. The command line will then prompt you to type out filenames to be monitored. Input the relative path or absolute path of the files you wish to monitor, separated by commas as instructed.   When done, hit enter and the program will add the files.
@@ -14,4 +14,4 @@ The second program is ispy_observe.py, the monitoring system itself. Like before
 
 
 # Note:
-The program is not able to see WHO has changed a file, only WHAT and HOW it has been changed. This is a limitation inherent in all implementations of watchdog and inotify. For more information on the technical issues involved see the answer on this StackExchange thread: https://stackoverflow.com/questions/47623037/how-would-i-get-the-pid-of-the-process-causing-a-file-system-event
+The program is not able to see WHO has changed a file, only WHAT, WHEN, and HOW it has been changed. This is a limitation inherent in all implementations of watchdog and inotify. For more information on the technical issues involved see the answer on this StackExchange thread: https://stackoverflow.com/questions/47623037/how-would-i-get-the-pid-of-the-process-causing-a-file-system-event
